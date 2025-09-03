@@ -545,10 +545,12 @@ export default function WellnessScreen() {
         {/* Advanced Health Metrics */}
         <View style={styles.sectionHeader}>
           <Activity color="#8b5cf6" size={24} />
-          <Text style={styles.sectionTitle}>Advanced Health Metrics</Text>
-          {!smartWatchData?.isConnected && (
-            <Text style={styles.sectionSubtitle}>Connect your smartwatch for real-time data</Text>
-          )}
+          <View style={styles.sectionTitleContainer}>
+            <Text style={styles.sectionTitle}>Advanced Health Metrics</Text>
+            {!smartWatchData?.isConnected && (
+              <Text style={styles.sectionSubtitle}>Connect your smartwatch for real-time data</Text>
+            )}
+          </View>
         </View>
         
         <View style={styles.advancedMetricsGrid}>
@@ -1397,6 +1399,9 @@ const styles = StyleSheet.create({
     gap: 12,
     marginBottom: 16,
   },
+  sectionTitleContainer: {
+    flex: 1,
+  },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -1406,6 +1411,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#64748b',
     fontStyle: 'italic',
+    marginTop: 4,
   },
   advancedMetricsGrid: {
     flexDirection: 'row',
