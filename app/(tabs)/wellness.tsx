@@ -547,9 +547,9 @@ export default function WellnessScreen() {
           <Activity color="#8b5cf6" size={24} />
           <View style={styles.sectionTitleContainer}>
             <Text style={styles.sectionTitle}>Advanced Health Metrics</Text>
-            {!smartWatchData?.isConnected && (
+            {!smartWatchData?.isConnected ? (
               <Text style={styles.sectionSubtitle}>Connect your smartwatch for real-time data</Text>
-            )}
+            ) : null}
           </View>
         </View>
         

@@ -350,9 +350,9 @@ export default function MotivationScreen() {
             <Sparkles color="#fbbf24" size={28} />
           </View>
           <Text style={styles.subtitle}>Your personal AI companion for daily inspiration</Text>
-          {currentMood && (
+          {currentMood ? (
             <Text style={styles.moodText}>Feeling {currentMood} today</Text>
-          )}
+          ) : null}
         </View>
       </LinearGradient>
 
@@ -431,7 +431,7 @@ export default function MotivationScreen() {
         ) : null}
 
         {/* Quote History */}
-        {quotesDelivered.length > 0 && (
+        {quotesDelivered.length > 0 ? (
           <View style={styles.historyContainer}>
             <Text style={styles.historyTitle}>
               Motivation History ({quotesDelivered.length}/24)
@@ -452,7 +452,7 @@ export default function MotivationScreen() {
               ))}
             </View>
           </View>
-        )}
+        ) : null}
 
 
 

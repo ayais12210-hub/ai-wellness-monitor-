@@ -72,14 +72,14 @@ export default function InsightsScreen() {
             type="summary"
           />
           
-          {generatedInsight && (
+          {generatedInsight ? (
             <InsightCard
               icon={<Sparkles color="#667eea" size={24} />}
               title="AI Generated Insight"
               description={generatedInsight}
               type="pattern"
             />
-          )}
+          ) : null}
         </View>
 
         <TouchableOpacity
