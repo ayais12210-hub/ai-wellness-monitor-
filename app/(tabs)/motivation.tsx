@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Play, Pause, RotateCcw, Bell, BellOff, Clock, Sparkles, MessageCircle, Send, Bot, User } from 'lucide-react-native';
-import * as Notifications from 'expo-notifications';
+
 import { useWellness } from '@/hooks/wellness-store';
 
 const { width } = Dimensions.get('window');
@@ -36,16 +36,7 @@ interface CoreMessage {
   content: string;
 }
 
-// Configure notifications
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-    shouldShowBanner: true,
-    shouldShowList: true,
-  }),
-});
+
 
 const motivationalQuotes = [
   "Every morning brings new opportunities. Make today count! 🌅",
@@ -102,15 +93,9 @@ export default function MotivationScreen() {
       return false;
     }
 
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    
-    return finalStatus === 'granted';
+    // For mobile platforms, we'll use a simple alert-based system
+    // since expo-notifications is not available in Expo Go SDK 53
+    return true;
   };
 
   // Send notification
@@ -125,14 +110,13 @@ export default function MotivationScreen() {
         });
       }
     } else {
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: `Hour ${hour + 1} Motivation`,
-          body: quote,
-          sound: 'default',
-        },
-        trigger: null,
-      });
+      // For mobile platforms, show an alert instead of push notification
+      // since expo-notifications is not available in Expo Go SDK 53
+      Alert.alert(
+        `Hour ${hour + 1} Motivation 🌟`,
+        quote,
+        [{ text: 'Thanks!' }]
+      );
     }
   };
 
